@@ -318,9 +318,39 @@ SELECT NAME 학생이름,grade 학년,height 키
 FROM student
 ORDER BY 2 , 키 DESC 
 
-/*
+/* 문제 1
   교수테이블(professor)에서 교수번호(no),교수이름(name), 급여(salary), 
   예상급여(10%인상) 조회하기
-  학과코드순,예상급여의 내림차순으로 정렬하기
+  학과코드(deptno)순,예상급여의 내림차순으로 정렬하기
 */
+SELECT NO,NAME,salary,salary * 1.1 예상급여,deptno
+FROM professor
+ORDER BY deptno, 4 DESC
 
+SELECT NO,NAME,salary,salary * 1.1 예상급여,deptno
+FROM professor
+ORDER BY deptno, 예상급여 DESC
+
+SELECT NO,NAME,salary,salary * 1.1 예상급여,deptno
+FROM professor
+ORDER BY deptno, salary * 1.1 desc
+
+
+/* 문제 2
+  학생 테이블(student)에서 지도교수번호(profno)가 배정되지 않는 학생의
+  학번,이름,지도교수번호,전공1코드 출력하기
+  단 전공1코드 순으로 정렬하여 출력하기
+*/
+SELECT studno,NAME,profno,major1
+FROM student
+WHERE profno IS NULL
+ORDER BY major1 
+
+/* 문제 3
+  1학년 학생의 이름(name),키(height),몸무게(weight)를
+  키는 작은 순으로 몸무게는 큰순으로 정렬하여 출력하기
+*/
+SELECT NAME,height,weight
+FROM student
+WHERE grade = 1
+ORDER BY height, weight desc
