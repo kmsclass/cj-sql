@@ -228,6 +228,11 @@ ORDER BY 인원수
      right outer join : 오른쪽 테이블의 모든 레코드 조회
      full outer join : 양쪽 테이블의 모든 레코드 조회. mariadb에서 사용안됨. 
 */
+-- 오라클 학생의 이름과 지도교수이름을 출력하기
+SELECT s.name, p.name
+FROM student s, professor p
+WHERE s.profno = p.no(+) -- 오라클인 경우 left outer join 방식 
+
 
 -- 학생의 이름과 지도교수이름을 출력하기
 SELECT s.name, p.name
@@ -265,11 +270,11 @@ on s.profno = p.no
 -- 지도학생이 없는 교수도 조회되도록하고, 지도학생없음으로 출력하기
 
 SELECT s.studno, s.name, ifnull(s.profno,""), ifnull(p.name,"지도교수없음")
-FROM student s LEFT OUTER join professor p
+FROM student s LEFT  join professor p
 on s.profno = p.no
 union
 SELECT ifnull(s.studno,""), ifnull(s.name,"지도학생없음"), 
        ifnull(s.profno,""), p.name
-FROM student s right OUTER join professor p
+FROM student s right  join professor p
 on s.profno = p.no
 
